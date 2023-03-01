@@ -18,7 +18,7 @@ $this->app->bind( "Grape", function($app) {
 $this->app["grape"] = Grape::load();
 
 ## FUNCIÓN CORE
-if(!function_exists("Malla")) {
+if(!function_exists("grape")) {
    function grape( $key=null ) {
       return Grape::load($key);
    }
@@ -34,44 +34,41 @@ Grape::load( "urls", new \Grape\Core\Support\Urls($this->app) );
 ## COMMON HELPER
 require_once(__DIR__."/Support/Helper.php");
 
+## URL ETIQUETADAS
+Grape::addUrl([
+   "__base"    => grape("urls")->baseDir(),
+   "__cdn"    	=> "__base/cdn/",
+]);
+
+## DIRECTORIOS ETIQUETADOS
+Grape::addPath([
+   "__base"          => grape("urls")->baseDir(),
+   "__grape"         => realpath(__DIR__."/../../"),
+   "__cdn"           => public_path("__base/cdn/"),
+   "__localmodule"   => realpath(__DIR__."/../../../")."/",
+   "__public"        => public_path("/__base")
+]);
+
+/* APP CONFIGS
+* Archivo de configuracion */
+$configs = $this->app["files"]->requireOnce(__DIR__."/app.php");
+
+foreach ($configs as $key => $value) {
+   $this->app['config']->set("app.$key", $value);
+}
+
+/* INIT
+* Inicializando los modulos */
+Grape::init();
 
 Grape::run(\Grape\Core\Driver::class);
 
-## URL ETIQUETADAS
-// Grape::addUrl([
-//    "__base"    	=> Grape::load("urls")->baseDir(),
-//    "__cdn"    	=> "__base/cdn/",
-// ]);
 
-// ## DIRECTORIOS ETIQUETADOS
-// Malla::addPath([
-//    "__base"          => malla("urls")->baseDir(),
-//    "__core"          => realpath(__DIR__."/../"),
-//    "__admin"          => realpath(__DIR__."/../../Admin"),
-//    "__cdn"           => public_path("__base/cdn/"),
-//    "__localmodule"   => realpath(__DIR__."/../../../")."/",
-//    "__locale"        => "__core/Http/Locale/",
-//    "__public"        => public_path("/__base"),
-//    "__admin_asset"   => public_path("/__base/admin/assets")
-// ]);
-
-// /* APP CONFIGS
-// * Archivo de configuracion */
-// $configs = $this->app["files"]->requireOnce(__DIR__."/app.php");
-
-// foreach ($configs as $key => $value) {
-//    $this->app['config']->set("app.$key", $value);
-// }
-
-// /* INIT
-// * Inicializando los modulos */
-// Malla::init();
-
-// if( Malla::isRunning() ) {
-//    /*
-//    * HANDLER AND LOAD STABLE CORE */
-//    $this->mount(Malla::load());
-// }
-// else {
-//    Malla::run(\Malla\Install\Driver::class);
-// }
+if( Grape::isRunning() ) {
+   /*
+   * HANDLER AND LOAD STABLE CORE */
+   $this->mount(Grape::load());
+}
+else {
+  Grape::run(\Grape\Install\Driver::class);
+}

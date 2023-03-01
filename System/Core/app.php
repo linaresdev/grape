@@ -8,7 +8,7 @@
 */
 
 return [
-   "core"         => "core",
+   //"core"         => "core",
    "modules"      => [
       "core"      => null,
       "library"   => [],
