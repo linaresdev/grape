@@ -14,7 +14,7 @@ class Driver {
             'name'          => 'Grape',
             'author'        => 'Ramon A Linares Febles',
             'email'         => 'linareslf@gmail.com',
-            'license'       => 'Mit'
+            'license'       => 'Mit',
             'support'       => 'https://iipec.net/application/grape',
             'version'       => 'V-0.0',
             'description'   => 'Es la uva para desarrollar grandes, medianos y pequeño proyectos.'
@@ -32,10 +32,13 @@ class Driver {
         ];
     }
 
+    public function libraries() {
+        return [];
+    }
+
     public function providers() { return []; }
     public function alias() { return []; }
 
     public function install($app) { }
     public function destroy($app) { }
-
 }
