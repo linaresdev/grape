@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Core\Database;
+namespace Grape\Core\Database;
 
 /*
  *---------------------------------------------------------
@@ -15,10 +15,8 @@ class CoreSchema {
 
     protected $tables = [
       "apps",
-      "appsinfo",
-      "appsconfig",
-      "appsmeta",
-      "appslocale",
+      "appinfo",
+      "appmeta",
       "routes",
     ];
 
@@ -52,7 +50,7 @@ class CoreSchema {
 
             $table->string("type", 30);
             $table->string("slug", 30)->unique();
-            $table->text("driver")->nullable();
+            $table->text("argument")->nullable();
             $table->text("token")->nullable();
 
             $table->char("activated", 1)->default(0);
@@ -64,9 +62,9 @@ class CoreSchema {
       }
     }
 
-    public function appsinfo() {
-      if( !Schema::hasTable("appsinfo") ) {
-         Schema::create('appsinfo', function ($table) {
+    public function appinfo() {
+      if( !Schema::hasTable("appinfo") ) {
+         Schema::create('appinfo', function ($table) {
             $table->integer('app_id')->unsigned();
             $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
 
@@ -87,46 +85,11 @@ class CoreSchema {
       }
     }
 
-    public function appsconfig() {
-      if( !Schema::hasTable("appsconfig") ) {
-         Schema::create('appsconfig', function ($table) {
-
-            $table->bigIncrements('id');
-
-            $table->integer('app_id')->unsigned();
-            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->string("key", 200);
-            $table->text("value");
-
-            $table->boolean("activated")->default(1);
-
-            $table->engine = 'InnoDB';
-         });
-      }
-    }
-
-    public function appslocale() {
-      if( !Schema::hasTable("appslocale") ){
-         Schema::create('appslocale', function ($table) {
-            $table->bigIncrements('id');
-
-            $table->integer('app_id')->unsigned();
-            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
-
-            $table->string("key", 150);
-            $table->text("value");
-
-            $table->boolean("activated")->default(1);
-
-            $table->engine = 'InnoDB';
-         });
-      }
-    }
-
-    public function appsmeta() {
-      if( !Schema::hasTable("appsmeta") ) {
-         Schema::create('appsmeta', function ($table) {
-            $table->bigIncrements('id');
+    public function appmeta() {
+      if( !Schema::hasTable("appmeta") ) {
+         Schema::create( 'appmeta', function( $table ) {
+            
+          $table->bigIncrements('id');
 
             $table->string("type", 30);
 

@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Core\Model;
+namespace Grape\Core\Model;
 
 /*
  *---------------------------------------------------------
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CoreMeta extends Model {
 
-  protected $table = "appsmeta";
+  protected $table = "appmeta";
 
   protected $fillable = [
    "app_id",

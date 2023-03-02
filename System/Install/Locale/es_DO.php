@@ -9,16 +9,22 @@
 
 return [
 
-   "laravel.environmet" => "Ambiente Laravel",
+   ## END
+   'end.install.title'  => "La instalación a finalizado",
+   "end.install.info"   => "Al salir del ayudante de instalación se cerrará y no podrás acceder",
+   "end.custom-back"    => "Retrocede a la ventana anteriro",
+
+   "grape.description"  => "Es la uva para desarrollar grandes, medianos y pequeño proyectos.",
 
    "install.init"       => "Iniciar Instalación",
    "install.end"        =>"La Instalación a finalizado",
    "init.construct"     => "Iniciar constructor",
 
-   "grape.description"  => "Es la uva para desarrollar grandes, medianos y pequeño proyectos.",
+   "laravel.environmet" => "Ambiente Laravel",
+   
+   "user.admin"         => "Usuario Administrativo",   
 
-   "user.admin"         => "Usuario Administrativo",
-
+   ## WORDS
    "words.account"      => "Cuenta",
    "words.actions"      => "Acciones",
    "words.email"        => "Correo electrónico",
@@ -43,9 +49,4 @@ return [
    "validation.required" => "Campo requerido",
    "validation.same"     => "Loas campos no coinciden",
 
-   ## END
-   'end.install.title'  => "La instalación a finalizado",
-   "end.install.info" => "Al salir del ayudante de instalación se cerrará y no podrás acceder",
-
-   "end.custom-back" => "Retrocede a la ventana anteriro",
 ];

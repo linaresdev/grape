@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Core\Model;
+namespace Grape\Core\Model;
 
 /*
  *---------------------------------------------------------
@@ -8,9 +8,9 @@ namespace Malla\Core\Model;
  *---------------------------------------------------------
 */
 
-use Malla\Core\Model\CoreInfo;
-use Malla\Core\Model\CoreMeta;
-use Malla\Core\Model\CoreConfig;
+use Grape\Core\Model\CoreInfo;
+use Grape\Core\Model\CoreMeta;
+use Grape\Core\Model\CoreConfig;
 use Illuminate\Database\Eloquent\Model;
 
 class Core extends Model {
@@ -18,13 +18,13 @@ class Core extends Model {
   protected $table = "apps";
 
   protected $fillable = [
-    "type",
-		"slug",
-		"driver",
-		"token",
-		"activated",
-		"created_at",
-		"updated_at"
+      "type",
+      "slug",
+      "argument",
+      "token",
+      "activated",
+      "created_at",
+      "updated_at"
   ];
 
 /*

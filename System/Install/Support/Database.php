@@ -15,12 +15,10 @@ class Database {
    protected $app;
 
    protected $store = [
-      \Grape\Core\Driver::class,
-
-      \Grape\User\Driver::class,
-      \Grape\Menu\Driver::class,
-
-      \Grape\Admin\Driver::class,
+      // \Grape\Core\Driver::class,
+      // \Grape\User\Driver::class,
+      // \Grape\Menu\Driver::class,
+      // \Grape\Admin\Driver::class,
    ];
 
    protected $orders = [
@@ -32,7 +30,6 @@ class Database {
    }
 
    public function data() {
-
       $data["title"]       = __("words.database");
       $data["engine"]      = $this->widgetDB();
       $data["isdb"]        = \Schema::hasTable("apps");

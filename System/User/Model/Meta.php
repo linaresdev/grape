@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Core\Model;
+namespace Grape\User\Model;
 
 /*
  *---------------------------------------------------------
@@ -10,18 +10,19 @@ namespace Malla\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CoreConfig extends Model {
+class Meta extends Model {
 
-  protected $table = "appsconfig";
+   protected $table = "usersmeta";
 
-  protected $fillable = [
-      "core_id",
+   protected $fillable = [
+      "user_id",
+      "type",
       "key",
       "value",
-      "activated"
-  ];
+      "activated",
+   ];
 
-  public $timestamps = false;
+   public $timestamps = false;
 
-  //protected $dateFormat = 'U';
+   //protected $dateFormat = 'U';
 }

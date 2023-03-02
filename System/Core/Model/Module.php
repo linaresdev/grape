@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Core\Model;
+namespace Grape\Core\Model;
 
 /*
  *---------------------------------------------------------
@@ -8,7 +8,7 @@ namespace Malla\Core\Model;
  *---------------------------------------------------------
 */
 
-use Malla\Core\Model\Core;
+use Grape\Core\Model\Core;
 
 class Module extends Core {
    public function name() {

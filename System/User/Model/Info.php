@@ -1,5 +1,5 @@
 <?php
-namespace Grape\Core\Model;
+namespace Grape\User\Model;
 
 /*
  *---------------------------------------------------------
@@ -10,18 +10,18 @@ namespace Grape\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CoreRoute extends Model {
+class Info extends Model {
 
-   protected $table = "routes";
+   protected $table = "usersdata";
 
    protected $fillable = [
-      "domain",
-      "method",
-      "prefix",
-      "uri",
-      "name",
-      "action",
-      "middleware"
+      "user_id",
+      "firstname",
+      "lastname",
+      "email",
+      "birthday",
+      "gender"
    ];
 
+   public $timestamps = false;
 }

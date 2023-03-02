@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Install\Request;
+namespace Grape\Install\Request;
 
 /*
  *---------------------------------------------------------
