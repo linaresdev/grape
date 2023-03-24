@@ -17,6 +17,7 @@ class Home {
 
    public function data() {
       return [
+         "title" => "Grape"
       ];
    }
 }

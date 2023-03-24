@@ -28,6 +28,7 @@ class Driver {
   			"slug"			=> "core",
   			"driver"		=> \Grape\Core\Driver::class,
   			"token"			=> NULL,
+			"icon"			=> "mdi-heart-pulse",
   			"activated" 	=> 0,
   		];
   	}
@@ -37,20 +38,19 @@ class Driver {
   		];
   	}
 
-   public function providers() {
-      return [];
-   }
-   public function alias() {
-      return [];
-   }
+	public function providers() {
+		return [];
+	}
+	public function alias() {
+		return [];
+	}
 
-   public function install( $app ) {
-     // (new \Malla\Core\Database\CoreSchema)->up();
+	public function install( $app ) {
+		(new \Grape\Core\Database\CoreSchema)->up();
+		$app->create($this->app());
+	}
 
-      //$app->create($this->app())->addInfo($this->info());
-   }
-
-   public function uninstall() {
-     // (new \Malla\Core\Database\CoreSchema)->down();
-   }
+	public function uninstall($app) {		
+		(new \Grape\Core\Database\CoreSchema)->down();
+	}
 }

@@ -8,14 +8,14 @@ namespace Grape\Install\Support;
  *---------------------------------------------------------
 */
 
-use Grape\Core\Model\Core;
+use Grape\Core\Model\Driver;
 
 class Database {
 
-   protected $app;
+   protected $driver;
 
    protected $store = [
-      // \Grape\Core\Driver::class,
+       \Grape\Core\Driver::class,
       // \Grape\User\Driver::class,
       // \Grape\Menu\Driver::class,
       // \Grape\Admin\Driver::class,
@@ -25,20 +25,19 @@ class Database {
       "widget","theme","package","pluging","library","core"
    ];
 
-   public function __construct(  Core $app ) {
-      $this->app = $app;
+   public function __construct(  Driver $driver ) {
+      $this->driver = $driver;
    }
 
    public function data() {
       $data["title"]       = __("words.database");
       $data["engine"]      = $this->widgetDB();
-      $data["isdb"]        = \Schema::hasTable("apps");
+      $data["isdb"]        = $this->forgeCoreDB();
 
       return $data;
    }
 
    public function widgetDB() {
-
       return [
          __("words.engine")   => env("DB_CONNECTION"),
          __("words.host")     => env("DB_HOST"),
@@ -48,40 +47,62 @@ class Database {
       ];
    }
 
-   public function forge( $request ) {
-      foreach ( $this->store as $component ) {
-         if( class_exists($component) ) {
-            if( method_exists(($app = new $component), "install") ) {
-               $app->install($this->app);
+   public function forgeCoreDB() {
+
+      if(($isDB = \Schema::hasTable("drivers")) == false ) {
+
+         foreach ( $this->store as $component ) {
+            if( class_exists($component) ) {
+               if( method_exists(($app = new $component), "install") ) {
+                  $app->install($this->driver);
+               }
             }
+         }
+
+         if(($isDB = \Schema::hasTable("drivers")) != false ) {
+            $this->alert->success(
+               "Las entidades del core creadas correctamente"
+            );
          }
       }
 
-      $data["type"]        = "admin";
-      $data["fullname"]    = "Admin Server";
-      $data["shortname"]   = "Admin";
-      $data["email"]       = $request->email;
-      $data["password"]    = $request->pwd;
-      $data["activated"]   = 1;
+      return $isDB;
+   }
 
-      (new \Grape\User\Model\Store)->create($data);
+   public function forge( $request ) {
+      // foreach ( $this->store as $component ) {
+      //    if( class_exists($component) ) {
+      //       if( method_exists(($app = new $component), "install") ) {
+      //          $app->install($this->driver);
+      //       }
+      //    }
+      // }
 
-      $this->alert->success("Las entidades creadas correctamente");
+//       $data["type"]        = "admin";
+//       $data["fullname"]    = "Admin Server";
+//       $data["shortname"]   = "Admin";
+//       $data["email"]       = $request->email;
+//       $data["password"]    = $request->pwd;
+//       $data["activated"]   = 1;
+// 
+//       (new \Grape\User\Model\Store)->create($data);
+// 
+//       $this->alert->success("Las entidades creadas correctamente");
 
       return back();
    }
 
    public function destroy() {
 
-      if( $this->app->count() > 0 ) {
-         $app = $this->app;
+      if( $this->driver->count() > 0 ) {
+         $app = $this->driver;
 
          $uninstallAndDelete = function($type) use ($app) {
-            if( ($data = $this->app->type($type))->count() > 0 ) {
+            if( ($data = $this->driver->type($type))->count() > 0 ) {
                foreach ( $data->get() as $row ) {
                   $driver = $row->driver;
                   $driver = new $driver;
-
+                  
                   $driver->uninstall( $app );
                }
             }

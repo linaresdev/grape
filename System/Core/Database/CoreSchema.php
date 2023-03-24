@@ -14,87 +14,42 @@ use Illuminate\Support\Facades\Schema;
 class CoreSchema {
 
     protected $tables = [
-      "apps",
-      "appinfo",
-      "appmeta",
-      "routes",
+      "drivers",
+      "configs",
+      "locales"
     ];
 
-    public function routes() {
-      if( !Schema::hasTable("routes") ) {
-         Schema::create('routes', function ($table) {
-            $table->increments('id');
+   public function drivers() {
+    if( !Schema::hasTable("drivers") ) {
 
-            $table->string("domain", 30)->nullable();
-            $table->string("method", 30);
-            $table->string("prefix", 30)->default('/');
-            $table->string("uri", 30)->default('/');
-            $table->string("name", 30)->nullable();
-            $table->string("action", 30);
+       Schema::create('drivers', function ($table) {
+          $table->increments('id');
 
-            $table->string("middleware", 30)->nullable();
+          $table->string("type", 30);
+          $table->integer('parent')->default(0);
+          $table->string("slug", 30);
+          $table->text("driver")->nullable();
+          $table->text("token")->nullable();
+          $table->string("icon", 30)->nullable();
 
-            $table->boolean("activated", 1)->default(1);
+          $table->char("activated", 1)->default(0);
 
-            $table->timestamps();
+          $table->timestamps();
 
-            $table->engine = 'InnoDB';
-         });
-      }
-   }
+          $table->engine = 'InnoDB';          
+       });
 
-    public function apps() {
-      if( !Schema::hasTable("apps") ) {
-         Schema::create('apps', function ($table) {
-            $table->increments('id');
-
-            $table->string("type", 30);
-            $table->string("slug", 30)->unique();
-            $table->text("argument")->nullable();
-            $table->text("token")->nullable();
-
-            $table->char("activated", 1)->default(0);
-
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
-         });
-      }
     }
+  }
 
-    public function appinfo() {
-      if( !Schema::hasTable("appinfo") ) {
-         Schema::create('appinfo', function ($table) {
-            $table->integer('app_id')->unsigned();
-            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+  public function configs() {
+      if( !Schema::hasTable("configs") ) {
 
-            $table->string("name", 30)->nullable();
-            $table->string("author", 150)->nullable();
-            $table->string("email", 80)->nullable();
-            $table->text("avatar")->default("cdn/assets/images/empty.png");
-            $table->string("license", 15)->nullable();
-            $table->text("support")->nullable();
-            $table->string("version", 15)->nullable();
-            $table->string("description", 100)->nullable();
-            $table->text("comment")->nullable();
-
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
-         });
-      }
-    }
-
-    public function appmeta() {
-      if( !Schema::hasTable("appmeta") ) {
-         Schema::create( 'appmeta', function( $table ) {
-            
+        Schema::create( 'configs', function( $table ) {            
           $table->bigIncrements('id');
 
-            $table->string("type", 30);
-
-            $table->integer('app_id')->unsigned();
-            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->integer('driver_id')->unsigned();
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('CASCADE')->onUpdate('CASCADE');
 
             $table->string("key", 200);
             $table->text("value");
@@ -102,7 +57,26 @@ class CoreSchema {
             $table->boolean("activated")->default(1);
 
             $table->engine = 'InnoDB';
-         });
+        });
+        
+      }
+    }
+
+    public function locales() {
+      if( !Schema::hasTable("locales") ) {
+
+        Schema::create( 'locales', function( $table ) {            
+          $table->bigIncrements('id');
+
+            $table->integer('driver_id')->unsigned();
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+            $table->string("key", 200);
+            $table->text("value");
+
+            $table->engine = 'InnoDB';
+        });
+        
       }
     }
 

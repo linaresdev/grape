@@ -14,7 +14,6 @@
             <article class="box-body pt-4">
 
                <div class="block bg-light mb-3 pt-3">
-
                   <ul class="list-group">
                      @foreach( $engine as $label => $value )
                      <li class="list-group-item px-3 py-1">
@@ -22,11 +21,9 @@
                      </li>
                      @endforeach
                   </ul>
-
                </div>
 
                <div class="block">
-
                   @if( !$isdb )
                   <h4>
                      <i class="mdi mdi-account-cog"></i>
@@ -78,4 +75,5 @@
 
             </section>
          </article>
+         
    @endsection
