@@ -1,6 +1,6 @@
 {    
     "name": "linaresdev/grape",
-    "description": "Es la uva para desarrollar grandes, medianos y pequeño proyectos.",
+    "description": "La uva para desarrollar grandes, medianos y pequeños proyectos.",
     "keywords": ["application", "component, module, package"],
     "license": "Mit",
     "type": "package",

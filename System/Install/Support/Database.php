@@ -16,7 +16,8 @@ class Database {
    protected $driver;
 
    protected $store = [
-       \Grape\Core\Driver::class,
+      \Grape\Core\Driver::class,
+      \Grape\Driver::class,
       // \Grape\User\Driver::class,
       // \Grape\Menu\Driver::class,
       // \Grape\Admin\Driver::class,
@@ -31,6 +32,7 @@ class Database {
    }
 
    public function data() {
+     
       $data["title"]       = __("words.database");
       $data["dbstor"]      = [
          "engine"   => env("DB_CONNECTION"),

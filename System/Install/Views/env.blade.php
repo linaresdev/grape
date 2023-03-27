@@ -5,14 +5,15 @@
          <article class="box box-light">
             <header class="box-header">
                <h4>
-                  <i class="mdi mdi-laravel"></i> {{env("APP_NAME")}} {{__path("__base")}}
+                  <i class="mdi mdi-laravel"></i> 
+                  {{env("APP_NAME")}}
                </h4>
             </header>
             <section class="box-body">
 
                <article class="block bg-light pt-3">
                   Actualizar los recursos públicos
-                  <a href="{{__url("install/env/published")}}" class="btn btn-outline-secondary btn-sm" style="float:right">
+                  <a href="{{__url('install/env/published')}}" class="btn btn-outline-secondary btn-sm" style="float:right">
                      <i class="mdi mdi-publish"></i>
                      {{__("words.update")}}
                   </a>
