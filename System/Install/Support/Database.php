@@ -9,6 +9,7 @@ namespace Grape\Install\Support;
 */
 
 use Grape\Core\Model\Driver;
+use Illuminate\Support\Facades\Schema;
 
 class Database {
 
@@ -31,25 +32,21 @@ class Database {
 
    public function data() {
       $data["title"]       = __("words.database");
-      $data["engine"]      = $this->widgetDB();
-      $data["isdb"]        = $this->forgeCoreDB();
+      $data["dbstor"]      = [
+         "engine"   => env("DB_CONNECTION"),
+         "host"     => env("DB_HOST"),
+         "port"     => env("DB_PORT"),
+         "database" => env("DB_DATABASE"),
+         "user"     => env("DB_USERNAME")
+      ];
+      $data["isdb"]        = Schema::hasTable("drivers");
 
       return $data;
    }
 
-   public function widgetDB() {
-      return [
-         __("words.engine")   => env("DB_CONNECTION"),
-         __("words.host")     => env("DB_HOST"),
-         __("words.port")     => env("DB_PORT"),
-         __("words.database") => env("DB_DATABASE"),
-         __("words.user")     => env("DB_USERNAME")
-      ];
-   }
-
    public function forgeCoreDB() {
 
-      if(($isDB = \Schema::hasTable("drivers")) == false ) {
+      if(($isDB = Schema::hasTable("drivers")) == false ) {
 
          foreach ( $this->store as $component ) {
             if( class_exists($component) ) {
@@ -59,14 +56,23 @@ class Database {
             }
          }
 
-         if(($isDB = \Schema::hasTable("drivers")) != false ) {
+         if(($isDB = Schema::hasTable("drivers")) != false ) {
             $this->alert->success(
                "Las entidades del core creadas correctamente"
             );
          }
       }
 
-      return $isDB;
+      return redirect( __url("install/database") );
+   } 
+
+   public function reset() {
+      $this->destroy();
+      $this->forgeCoreDB();
+
+      $this->alert->success("Entidades reiniciadas correctamentes");
+
+      return back();
    }
 
    public function forge( $request ) {

@@ -9,22 +9,51 @@
                   <i class="mdi mdi-database"></i>
                   {{__("words.database")}}
                </h4>
+               <div style="float: right;">
+                     @if( $isdb )
+                     <div class="btn-group">
+                     <a href="{{__url('/install/database/reset')}}" class="btn btn-outline-secondary btn-sm">
+                           {{__("words.reset")}}
+                        </a>
+                        <a href="{{__url('/install/database/destroy')}}" class="btn btn-outline-secondary btn-sm">
+                           {{__("words.destroy")}}
+                        </a>
+                     </div>
+                     @else
+                     <a href="{{__url('/install/database/entities')}}" class="btn btn-danger">
+                        <i class="mdi mdi-cog"></i>
+                        {{__("install.entities")}}
+                     </a>
+                     @endif
+                  </div>
             </header>
 
             <article class="box-body pt-4">
 
-               <div class="block bg-light mb-3 pt-3">
-                  <ul class="list-group">
-                     @foreach( $engine as $label => $value )
-                     <li class="list-group-item px-3 py-1">
-                        <strong>{{ $label }}</strong> : {{$value}}
-                     </li>
-                     @endforeach
-                  </ul>
-               </div>
+               <div class="">
+                  
+                  <table class="table bg-white">
+                     <thead class="bg-secondary text-white">
+                        <tr>
+                           <th>{{__("words.engine")}}</th>
+                           <th>{{__("words.host")}}</th>
+                           <th>{{__("words.port")}}</th>
+                           <th>{{__("words.database")}}</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>{{$dbstor["engine"]}}</td>
+                           <td>{{$dbstor["host"]}}</td>
+                           <td>{{$dbstor["port"]}}</td>
+                           <td>{{$dbstor["database"]}}</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>               
 
                <div class="block">
-                  @if( !$isdb )
+                  @if( $isdb )
                   <h4>
                      <i class="mdi mdi-account-cog"></i>
                      {{__("words.account")}}
@@ -54,19 +83,10 @@
                         <a href="{{__url('/install/env')}}" class="btn btn-outline-primary btn-sm">
                            <i class="mdi mdi-arrow-left-bold"></i> {{__("words.return")}}
                         </a>
-
                         @if( $isdb )
-                        <a href="{{__url('install/database/destroy')}}" class="btn btn-outline-danger btn-sm">
-                           <i class="mdi mdi-database-minus"></i> Reset
-                        </a>
                         <a href="{{__url('install/end')}}" class="btn btn-primary btn-sm">
-                            Siguiente <i class="mdi mdi-arrow-right-bold"></i>
-                        </a>
-                        @else
-                        <button type="submit" name="button" class="btn btn-danger btn-sm btn-block">
-                           <i class="mdi mdi-cog"></i>
-                           {{__("words.forge")}} {{__("init.construct")}}
-                        </button>
+                           {{__("words.next")}} <i class="mdi mdi-arrow-right-bold"></i>
+                        </a>                       
                         @endif
 
                      </div>

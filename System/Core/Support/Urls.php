@@ -24,7 +24,7 @@ class Urls {
 	}
 
 	public function baseDir() {
-	  return config("base.dir", $this->base_dir);
+	  return config("base.dir", env("APP_DIR", $this->base_dir));
 	}
 
 	public function replaceRul($tagg, $key, $value) {

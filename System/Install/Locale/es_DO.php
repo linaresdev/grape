@@ -17,7 +17,8 @@ return [
    "grape.description"  => "Es la uva para desarrollar grandes, medianos y pequeño proyectos.",
 
    "install.init"       => "Iniciar Instalación",
-   "install.end"        =>"La Instalación a finalizado",
+   "install.end"        => "La Instalación a finalizado",
+   "install.entities"   => "Instalar entedides",
    "init.construct"     => "Iniciar constructor",
 
    "laravel.environmet" => "Ambiente Laravel",
@@ -29,6 +30,7 @@ return [
    "words.actions"      => "Acciones",
    "words.email"        => "Correo electrónico",
    "words.database"     => "Base de Datos",
+   "words.destroy"      => "Destruir",
    "words.engine"       => "Motor",
    "words.host"         => "Servidor",
    "words.forge"        => "",
@@ -36,6 +38,7 @@ return [
    "words.update"       => "Actualizar",
    "words.user"         => "Usuario",
    "words.migrations"   => "Migraciones",
+   "words.next"         => "Siguiente",
    "words.out"          => "Salir",
    "words.password"     => "Contraseña",
    "words.pconfirm"     => "Confirmar contraseña",
@@ -43,6 +46,7 @@ return [
    "words.publish"      => "Publicar",
    "words.requeriment"  => "Requerimientos",
    "words.return"       => "Retornar",
+   "words.reset"        => "Reiniciar",
    "words.user"         => "Usuario",
 
    ## FORM VALIDAITION

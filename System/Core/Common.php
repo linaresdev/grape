@@ -44,9 +44,9 @@ Grape::addUrl([
 Grape::addPath([
    "__base"          => grape("urls")->baseDir(),
    "__grape"         => realpath(__DIR__."/../../"),
-   "__cdn"           => public_path("__base/cdn/"),
+   "__cdn"           => public_path("__base/cdn"),
    "__localmodule"   => realpath(__DIR__."/../../../")."/",
-   "__public"        => public_path("/__base")
+   "__public"        => public_path("__base")
 ]);
 
 /* APP CONFIGS
