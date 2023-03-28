@@ -23,6 +23,8 @@ class Store extends Authenticatable {
 
    protected $fillable = [
       "type",
+      "firstname",
+      "lastname",
       "fullname",
       "shortname",
       "rnc",
@@ -33,6 +35,7 @@ class Store extends Authenticatable {
       "password",
       "avatar",
 		"activated",
+      "remember_token",
 		"created_at",
 		"updated_at"
    ];

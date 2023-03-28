@@ -17,7 +17,7 @@ Route::get("/env/published", "EnvController@published");
 Route::prefix("database")->group( function($route) {
 
    Route::get("/", "DatabaseController@index");
-   Route::post("/", "DatabaseController@forge");
+   Route::post("/", "DatabaseController@account");
 
    Route::get("/entities", "DatabaseController@entities");
    Route::get("/reset", "DatabaseController@reset");

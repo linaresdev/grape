@@ -19,6 +19,7 @@ class EndController extends Controller {
    public function index() {
       return $this->render( "end", $this->app->data() );
    }
+   
    public function close() {
       return $this->app->close();
    }

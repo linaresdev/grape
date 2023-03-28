@@ -13,7 +13,7 @@ class StorDB {
 
 	protected $db;
 
-	protected $table = "apps";
+	protected $table = "drivers";
 
 	public $store;
 

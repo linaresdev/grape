@@ -8,13 +8,13 @@ namespace Grape\Install\Support;
  *---------------------------------------------------------
 */
 
-use Grape\Core\Model\Core;
+use Grape\Core\Model\Driver;
 
 class End {
 
    protected $app;
 
-   public function __construct( Core $app ) {
+   public function __construct( Driver $app ) {
       $this->app = $app;
    }
 
@@ -25,7 +25,11 @@ class End {
 
    public function close() {
 
-      if( $this->app->toggleCore(1) ) {
+      $core = $this->app->loadCore();
+      
+      $core->activated = 1;
+
+      if( $core->save() ) {
          return redirect()->to("/");
       }
 

@@ -35,7 +35,12 @@ class Driver {
         return [];
     }
 
-    public function providers() { return []; }
+    public function providers() { 
+        return [
+            \Grape\Provider\ServiceProvider::class,
+            \Grape\Provider\RouteServiseProvider::class,
+        ]; 
+    }
     public function alias() { return []; }
 
     public function migratePath() {        

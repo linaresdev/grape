@@ -84,11 +84,14 @@
                            <i class="mdi mdi-arrow-left-bold"></i> {{__("words.return")}}
                         </a>
                         @if( $isdb )
-                        <a href="{{__url('install/end')}}" class="btn btn-primary btn-sm">
-                           {{__("words.next")}} <i class="mdi mdi-arrow-right-bold"></i>
-                        </a>                       
+                        <button class="btn btn-success btn-sm"><i class="mdi mdi-content-save"></i> 
+                           {{__("words.save")}} 
+                        </button> 
+                        
+                        <a href="{{__url('/install/end')}}" class="btn btn-outline-primary btn-sm">{{__("words.next")}}
+                           <i class="mdi mdi-arrow-right-bold"></i> 
+                        </a>  
                         @endif
-
                      </div>
                   </form>
                </div>

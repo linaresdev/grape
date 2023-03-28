@@ -56,4 +56,9 @@ class Driver extends Model {
         return $query;
     }
 
+    public function loadCore($slug="core") {
+        return $this->where("type", "core")
+                    ->where("slug", "core")->first();
+    }
+
 }

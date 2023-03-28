@@ -23,7 +23,8 @@ return [
 
    "laravel.environmet" => "Ambiente Laravel",
    
-   "user.admin"         => "Usuario Administrativo",   
+   "user.admin"         => "Usuario Administrativo",
+   "user.enable"        => "Cuenta administrativa habilitada",   
 
    ## WORDS
    "words.account"      => "Cuenta",
@@ -48,9 +49,10 @@ return [
    "words.return"       => "Retornar",
    "words.reset"        => "Reiniciar",
    "words.user"         => "Usuario",
+   "words.save"         => "Guardar",
 
    ## FORM VALIDAITION
-   "validation.required" => "Campo requerido",
+   "validation.required" => "Campo :attribute requerido",
    "validation.same"     => "Loas campos no coinciden",
 
 ];

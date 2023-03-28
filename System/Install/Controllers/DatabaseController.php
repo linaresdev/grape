@@ -25,8 +25,8 @@ class DatabaseController extends Controller {
     return $this->app->forgeCoreDB();
   }
 
-  public function forge( User $request ) {
-    return $this->app->forge($request);
+  public function account( User $request ) {
+    return $this->app->account($request);
   }
 
   public function reset() {

@@ -77,25 +77,29 @@ class Database {
       return back();
    }
 
-   public function forge( $request ) {
-      // foreach ( $this->store as $component ) {
-      //    if( class_exists($component) ) {
-      //       if( method_exists(($app = new $component), "install") ) {
-      //          $app->install($this->driver);
-      //       }
-      //    }
-      // }
+   public function account( $request ) {
 
-//       $data["type"]        = "admin";
-//       $data["fullname"]    = "Admin Server";
-//       $data["shortname"]   = "Admin";
-//       $data["email"]       = $request->email;
-//       $data["password"]    = $request->pwd;
-//       $data["activated"]   = 1;
-// 
-//       (new \Grape\User\Model\Store)->create($data);
-// 
-//       $this->alert->success("Las entidades creadas correctamente");
+      $user = new \Grape\User\Store;
+
+      if($user->where("email", $request->email)->count() > 0 ) {
+        $user = $user->where("email", $request->email)->first();
+      }
+
+      $user->type       = "admin";
+      $user->fullname   = "Admin Server";
+      $user->shortname  = "Admin";
+      $user->email      = $request->email;
+      $user->password   = $request->password;
+
+      if( $user->save() ) {         
+         $this->alert->success(
+            "Cuenta administrativa habilitada"
+         );
+
+         return redirect("install/end");
+      }   
+
+      $this->alert->success("Error al procesar la cuenta admin");
 
       return back();
    }

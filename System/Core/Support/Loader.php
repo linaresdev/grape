@@ -34,7 +34,7 @@ class Loader {
 			return FALSE;
 		}
 
-		if( \Schema::hasTable( "apps" )) {
+		if( \Schema::hasTable( "drivers" )) {
 
 			if( $this->DB()->has("core", "core")) {
 				return ( $this->DB()->get("core", "core")->activated == 1);
@@ -47,7 +47,7 @@ class Loader {
    * PROXY */
    public function httpProxy() {
 
-      $DB = self::$app["malla"]->load("coredb");
+      $DB = self::$app["grape"]->load("coredb");
 
       $modules   = config("app.modules");
       $modules   = array_keys(config("app.modules"));

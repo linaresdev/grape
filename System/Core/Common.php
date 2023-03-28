@@ -63,7 +63,6 @@ Grape::init();
 
 Grape::run(\Grape\Core\Driver::class);
 
-
 if( Grape::isRunning() ) {
    /*
    * HANDLER AND LOAD STABLE CORE */

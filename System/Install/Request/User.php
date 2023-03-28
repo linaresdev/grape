@@ -20,7 +20,15 @@ class User extends FormRequest {
       return [
          "email"     => "required|email",
          "pwd"       => "required",
-         "rpwd"      => "same:pwd"
+         "rpwd"      => "required|same:pwd"
+      ];
+   }
+
+   public function attributes() {
+      return [
+         "email"  => __("words.email"),
+         "pwd"    => __("words.password"),
+         "rpwd"   => __("words.pconfirm")
       ];
    }
 }
