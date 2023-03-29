@@ -15,10 +15,6 @@ class EnvController extends Controller {
 
    public function __construct( Env $app ) {
       $this->boot($app);
-
-      // if( !app("files")->exists( __path("__base/cdn") ) ) {
-      //    $app->published();
-      // }
    }
 
    public function index() {

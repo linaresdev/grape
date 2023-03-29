@@ -51,8 +51,9 @@ class Loader {
 
       $modules   = config("app.modules");
       $modules   = array_keys(config("app.modules"));
+
       /*
-      * CORE SYSTEM */
+      * CORE SYSTEM */ 
       $this->loadCore( config("app.core") );
 
       /*

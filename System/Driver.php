@@ -31,8 +31,10 @@ class Driver {
         ];
     }
 
-    public function libraries() {
-        return [];
+    public function libraries($app) {
+        return [
+            \Grape\Skin\Driver::class
+        ];
     }
 
     public function providers() { 

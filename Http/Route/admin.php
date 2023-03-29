@@ -5,6 +5,4 @@
 *---------------------------------------------------------
 */
 
-Route::get("/", function() {
-    return "Admin Panel";
-});
+Route::get("/", "HomeController@index");

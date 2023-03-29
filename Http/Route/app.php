@@ -5,4 +5,6 @@
 *---------------------------------------------------------
 */
 
-Route::prefix("admin")->namespace("web")->group(__path("__grape/Http/Route/admin.php"));
+Route::prefix("admin")->middleware("web")
+                      ->namespace("Admin")
+                      ->group(__path("__grape/Http/Route/admin.php"));

@@ -92,9 +92,9 @@ class StorDB {
 	}
 
    public function getModules($type) {
-      $DB = $this->db->table($this->table);
-            $DB->where("type", $type);
-            $DB->where("activated", 1);
+      	$DB = $this->db->table($this->table);
+        $DB->where("type", $type);
+        $DB->where("activated", 1);
 
       return $DB->get();
    }
