@@ -63,10 +63,10 @@ class Loader {
       /*
       * COMPONENTS */
       $this->loadComponents(["theme", "widget"]);
+
    }
 
    public function loadCore( $slug ) {
-
       if( !empty( ($core = $this->DB()->getCore($slug)) ) ) {
          $this->modules["core"] = $core;
       }
@@ -76,7 +76,9 @@ class Loader {
       foreach ($types as $type ) {
          if( !empty( ( $modules = $this->DB()->getModules($type)) ) ) {
             foreach ( $modules as $module ) {
+
                $driver = $module->driver;
+               
                if( class_exists( $driver ) && array_key_exists($type, $this->modules) ) {
                   $this->modules[$type][] = new $driver;
                }
@@ -176,7 +178,16 @@ class Loader {
       if( array_key_exists( $type, $this->modules ) ) {
          if( !empty( ($drivers = $this->modules[$type]) ) ){
             foreach ( $drivers as $driver ) {
+
                $this->run($driver);
+
+               if( method_exists($driver, "loader") ) {
+                  if(is_array( ($loaders = $driver->drivers()) ) ) {
+                     foreach( $loaders as $load ) {
+                        $this->run($load);
+                     }
+                  }
+               }
             }
          }
       }

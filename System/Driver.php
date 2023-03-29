@@ -31,9 +31,9 @@ class Driver {
         ];
     }
 
-    public function libraries($app) {
+    public function drivers() {
         return [
-            \Grape\Skin\Driver::class
+            \Grape\Theme\Driver::class
         ];
     }
 

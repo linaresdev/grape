@@ -17,7 +17,7 @@ class ThemeServiceProvider extends ServiceProvider {
     }
 
     public function register() {
-        $this->bind("Skin", function($app) {
+        $this->app->bind("Skin", function($app) {
             return new \Grape\Theme\Support\Skin($app);
         });
     }

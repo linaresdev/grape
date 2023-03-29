@@ -17,13 +17,13 @@ return [
       "theme"     => [],
       "widget"    => [],
    ],
-   "components" => [
-      "library",
-      "plugin",
-      "package"
-   ],
-   "interface" => [
-      "theme",
-      "widget"
-   ]
+   // "components" => [
+   //    "library",
+   //    "plugin",
+   //    "package"
+   // ],
+   // "interface" => [
+   //    "theme",
+   //    "widget"
+   // ]
 ];

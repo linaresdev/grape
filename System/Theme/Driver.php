@@ -1,5 +1,5 @@
 <?php
-namespace Grape\Skin;
+namespace Grape\Theme;
 /*
 *---------------------------------------------------------
 * ©IIPEC
