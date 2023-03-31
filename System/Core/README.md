@@ -4,7 +4,7 @@
 ### Niveles de ejecución desde el registro.
 - [0] Core.
 - [1] Library.
-- [2] Package.
+- [2] Packages.
 - [3] Plugins.
 
 ### Niveles de ejecución desde el boot.

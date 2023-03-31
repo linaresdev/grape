@@ -39,13 +39,14 @@ class Driver {
     }
     public function alias() { 
         return [
-            "Skin"  => \Grape\Theme\Facade\Skin::class
+            "Skin"  => \Grape\Theme\Facade\Skin::class,
         ]; 
     }
 
     public function install( $app ) {
         $app->create($this->app());
     }
+    
     public function destroy( $app ) { }
 
 }

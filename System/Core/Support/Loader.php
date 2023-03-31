@@ -129,7 +129,6 @@ class Loader {
 	* ALIASES
 	* Load Alias */
 	public function loadAlias($alias=NULL) {
-
 		if(!empty($alias) && is_array($alias)) {
 			foreach ($alias as $alia => $class) {
 				AliasLoader::getInstance()->alias($alia, $class);
@@ -164,7 +163,7 @@ class Loader {
                $this->loadProviders( $providers );
             }
          }
-
+         
          if( method_exists($driver, "alias") ) {
             $this->loadAlias( $driver->alias() );
          }
@@ -181,10 +180,10 @@ class Loader {
 
                $this->run($driver);
 
-               if( method_exists($driver, "loader") ) {
+               if( method_exists($driver, "drivers") ) {
                   if(is_array( ($loaders = $driver->drivers()) ) ) {
-                     foreach( $loaders as $load ) {
-                        $this->run($load);
+                     foreach( $loaders as $subdriver ) {
+                        $this->run( new $subdriver() );
                      }
                   }
                }

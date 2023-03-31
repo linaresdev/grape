@@ -8,17 +8,16 @@ namespace Grape\Theme\Provider;
 *---------------------------------------------------------
 */
 
+use Grape\Theme\Facade\Skin;
 use Illuminate\Support\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider {
 
     public function boot() {
-        require_once(__DIR__."/../Common.php");
+        require_once(__DIR__."/../Http/App.php");
     }
 
     public function register() {
-        $this->app->bind("Skin", function($app) {
-            return new \Grape\Theme\Support\Skin($app);
-        });
+        require_once(__DIR__."/../Common.php");
     }
 }
