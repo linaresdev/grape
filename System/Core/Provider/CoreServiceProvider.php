@@ -34,21 +34,21 @@ class CoreServiceProvider extends CoreAccessor {
         * -----------------------------------------------------------------
       */
 
-        /*
-		   * [0] => CORE */
+      /*
+		    * [0] => CORE */
         $app->startModules("core");
 
-        /*
-		   * [1] => LIBRARIES */
-        $app->startModules("library");
+      /*
+		    * [1] => LIBRARIES */
+        $app->startModules("library");       
 
-        /*
-		   * [2] => PLUGINS */
+      /*
+		    * [3] => PACKAGES */
+        $app->startModules("package"); /*
+
+      /*
+        * [2] => PLUGINS */
         $app->startModules("plugin");
-
-        /*
-		   * [3] => PACKAGES */
-        $app->startModules("package");
 
    }
 }

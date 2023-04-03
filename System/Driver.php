@@ -31,9 +31,11 @@ class Driver {
         ];
     }
 
-    public function drivers() {
+    public function kernel() {
         return [
-            \Grape\Theme\Driver::class
+            "library" => [
+                \Grape\Theme\Driver::class
+            ]
         ];
     }
 
@@ -43,6 +45,7 @@ class Driver {
             \Grape\Provider\RouteServiseProvider::class,
         ]; 
     }
+    
     public function alias() { return []; }
 
     public function migratePath() {        

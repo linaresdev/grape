@@ -19,9 +19,6 @@ foreach($configs as $key => $value) {
     $this->app["config"]->set($key, $value);
 }
 
-
-//dd(config("app"));
-
 ## DIRECTORIOS ETIQUETADOS
 Grape::addPath([
     "__http"    => "__grape/Http",

@@ -27,7 +27,7 @@ class Core {
 	}
 
    public function init() {
-      if($this->load("loader")->isRunCore()) {
+      if( $this->load("loader")->isRunCore() ) {
 
          /* START
          * Autorizar instancia de los modulos */
@@ -35,21 +35,34 @@ class Core {
 
          /* CONTAINER
          * Contenedores de los modulos */
-         foreach (config("app.modules") as $key => $value) {
-            $this->load("loader")->moduleContainer($key, $value);
-         }
+         // foreach (config("app.modules") as $key => $value) {
+         //    $this->load("loader")->moduleContainer($key, $value);
+         // }
 
          /* HTTP START
          * Poblar contenedores con los componentes habilitados */
-         $this->load("loader")->httpProxy();
+         $this->load("loader")->httpProxy([
+            "core",
+            "library",
+            "package",
+            "plugin",
+            "theme",
+            "widget"
+         ]);
+
+         return $this->installed;
       }
+      
+      $this->run(\Grape\Install\Driver::class);
+
+      return $this->installed;
    }
 
    public function startModules($type) {
       $this->load("loader")->startModules($type);
    }
 
-   public function isRunning() {
+   public function stable() {
       return $this->installed;
    }
 

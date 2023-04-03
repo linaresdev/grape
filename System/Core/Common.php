@@ -59,15 +59,9 @@ foreach ($configs as $key => $value) {
 
 /* INIT
 * Inicializando los modulos */
-Grape::init();
 
-Grape::run(\Grape\Core\Driver::class);
-
-if( Grape::isRunning() ) {
+if( Grape::init() ) {
    /*
    * HANDLER AND LOAD STABLE CORE */
    $this->mount(Grape::load());
-}
-else {
-  Grape::run(\Grape\Install\Driver::class);
 }

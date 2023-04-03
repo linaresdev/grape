@@ -16,7 +16,7 @@ class InstallMiddleware {
    protected $exerts = [];
 
    public function handle($request, Closure $next, $guard = "web") {
-      if( app("grape")->isRunning() == false && __segment(1) != "install" ) {
+      if( app("grape")->stable() == false && __segment(1) != "install" ) {
          return redirect("install");
       }
       return $next($request);

@@ -33,6 +33,13 @@ class Driver {
   		];
   	}
 
+	public function kernel() {
+        return [
+            "library" => [
+            ]
+        ];
+    }
+
   	public function meta() {
   		return [
   		];

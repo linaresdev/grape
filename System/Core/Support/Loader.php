@@ -45,25 +45,23 @@ class Loader {
 
    /*
    * PROXY */
-   public function httpProxy() {
+   public function httpProxy( $containers ) {
 
-      $DB = self::$app["grape"]->load("coredb");
-
-      $modules   = config("app.modules");
-      $modules   = array_keys(config("app.modules"));
-
-      /*
-      * CORE SYSTEM */ 
-      $this->loadCore( config("app.core") );
+      /* CONTAINER
+      * Contenedores de los modulos */
+      foreach ( $containers as $container ) {
+         $this->moduleContainer($container, []);
+      }
 
       /*
       * MODULES */
-      $this->loadModules(["library", "plugin", "package"]);
-
-      /*
-      * COMPONENTS */
-      $this->loadComponents(["theme", "widget"]);
-
+      $this->loadModules([
+         "core", 
+         "library", 
+         "package",
+         "plugin", 
+         "widget"
+      ]);
    }
 
    public function loadCore( $slug ) {
@@ -75,16 +73,31 @@ class Loader {
    public function loadModules( $types ) {
       foreach ($types as $type ) {
          if( !empty( ( $modules = $this->DB()->getModules($type)) ) ) {
-            foreach ( $modules as $module ) {
-
-               $driver = $module->driver;
-               
-               if( class_exists( $driver ) && array_key_exists($type, $this->modules) ) {
-                  $this->modules[$type][] = new $driver;
+            foreach ( $modules as $module ) {                   
+               if( class_exists( ($driver = $module->driver) )  ) {
+                  $this->modules[$type][] = ($driver = new $driver);
+                  $this->loadParentModule($driver);
                }
             }
          }
       }
+   }
+
+  
+      /*
+   * PARENT
+   * Load Parent Modules */
+   public function loadParentModule( $driver ) {
+      if( is_object($driver) ) {
+         if( method_exists($driver, "kernel") ) {
+            foreach( $driver->kernel() as $key => $modules ) {
+               if(array_key_exists($key, $this->modules) ) {
+                  $this->modules[$key] = array_merge($this->modules[$key], $modules);
+               }
+            }
+
+         }
+      }  
    }
 
    public function loadComponents( $types ) {
@@ -173,22 +186,15 @@ class Loader {
    /*
    * START
    * Start Modules */
-   public function startModules( $type ) {
-      if( array_key_exists( $type, $this->modules ) ) {
-         if( !empty( ($drivers = $this->modules[$type]) ) ){
+   public function startModules( $type ) { 
+
+      if( array_key_exists( $type, $this->modules ) ) { 
+         if( !empty( ($drivers = $this->modules[$type]) ) ) {
             foreach ( $drivers as $driver ) {
-
                $this->run($driver);
-
-               if( method_exists($driver, "drivers") ) {
-                  if(is_array( ($loaders = $driver->drivers()) ) ) {
-                     foreach( $loaders as $subdriver ) {
-                        $this->run( new $subdriver() );
-                     }
-                  }
-               }
-            }
+            } 
          }
-      }
+      }      
    }
+   
 }
