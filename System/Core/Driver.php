@@ -36,6 +36,7 @@ class Driver {
 	public function kernel() {
         return [
             "library" => [
+                \Grape\Theme\Driver::class
             ]
         ];
     }
