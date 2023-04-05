@@ -12,17 +12,14 @@ class Skin {
 
     protected $slug;
 
-    protected $driver;
-
-    public function load( $driver=null )  {
-
-        if( class_exists( $driver ) ) {
-            dd( $driver );
+    public function load( $slug=null )  {
+        if( is_string($slug) ) {
+            $this->slug = $slug; return $this;
         }
-
-        //$this->slug = $slug;
-
-        return $this;
+    }
+    
+    public function helpers() {
+        return $this->driver->helpers();
     }
 
     public function path( $route="master" ) {

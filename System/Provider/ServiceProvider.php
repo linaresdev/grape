@@ -1,6 +1,5 @@
 <?php
 namespace Grape\Provider;
-
 /*
 *---------------------------------------------------------
 * ©IIPEC
@@ -18,5 +17,15 @@ class ServiceProvider extends Provider {
 
     public function register() {
         require_once(__path("__grape/System/Common.php"));
+    }
+
+    public function loadSkinFromDriver( $slug ) {
+        if(array_key_exists($slug, ($skins = config("app.admin.skins"))) ) {
+            if( class_exists( ($driver = $skins[$slug]) ) ) {
+                if( method_exists( ($driver = new $driver()), "helper") ) {
+                    require_once($driver->helper());
+                }
+            }
+        }
     }
 }

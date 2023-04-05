@@ -23,8 +23,13 @@ class Urls {
 	public function __construct( $urls ) {
 	}
 
-	public function baseDir() {
-	  return config("base.dir", env("APP_DIR", $this->base_dir));
+	public function baseDir($name=null) {
+
+		if( !empty($name) ) {
+			return $name;
+		}
+		
+		return config("base.dir", env("APP_DIR", $this->base_dir));
 	}
 
 	public function replaceRul($tagg, $key, $value) {

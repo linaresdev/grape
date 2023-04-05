@@ -11,7 +11,7 @@ class HomeSupport {
 
     public function index() {
 
-        $data['title'] = 'Admin Grape';
+        $data['store'] = 'Admin Grape';
 
         return $data;
     }

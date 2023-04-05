@@ -103,12 +103,6 @@ class Core {
 		return $this->load("urls")->addTag("urls", $taggs);
 	}
 
-	/*
-	* PATH */
-	// public function path($path=null) {
-	// 	return $this->load("urls")->path($path);
-	// }
-
 	public function addPath($taggs=[]) {
 		return $this->load("urls")->addTag("paths", $taggs);
 	}

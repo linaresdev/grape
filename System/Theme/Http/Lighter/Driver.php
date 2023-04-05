@@ -32,7 +32,7 @@ class Driver {
     }
 
     public function helper() {
-        return __DiR__."/Helper.php";
+        return __DiR__."/Helpers.php";
     }
 
     public function providers() { return []; }

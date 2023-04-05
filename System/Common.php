@@ -11,8 +11,12 @@ $configs = [
     "app.fake_locale" => "es_DO",
     "app.timezone"    => "America/Santo_Domingo",
 
-    "app.skin"        => "lighter",
-    "app.admin.skin"  => "lighter"
+    "app.skins"        => [
+        "lighter"   => \Grape\Theme\Http\Lighter\Driver::class
+    ],
+    "app.admin.skins"  => [
+        "lighter"   => \Grape\Theme\Http\Lighter\Driver::class
+    ],
 ];
 
 foreach($configs as $key => $value) {
