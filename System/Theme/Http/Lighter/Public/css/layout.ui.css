@@ -3,3 +3,11 @@
 body{
     background: #f3f3f3;
 }
+
+[role=lighter] .navbar {
+    border-bottom: 1px solid #ddd;
+}
+
+[role=lighter] .lighter-body {
+    padding-top: 65px;
+}

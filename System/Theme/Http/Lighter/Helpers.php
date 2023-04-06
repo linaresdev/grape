@@ -22,6 +22,7 @@ $data["language"]   = $this->app->getLocale();
 $data["title"]      = "Lighter Skin";
 $data["typeicon"]   = null;
 $data['icon']       = null;
+$data["container"]  = "container-fluid";
 
 ## VIEW PATH
 $this->loadViewsFrom(__DIR__.'/Views', 'lighter');
