@@ -21,6 +21,7 @@
 
      </head>
     <body>
+        @includeIF("lighter::partial.navbar")
 
         @yield("body", "Content Body")
     
@@ -28,7 +29,7 @@
 
         <script src="{{__url('__lighter/js/jquery-v3.6.4.min.js')}}"></script>
         <script src="{{__url('__lighter/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{__url('__lighter/js/layout-ui.js')}}"></script>
+        <script src="{{__url('__lighter/js/layout.ui.js')}}"></script>
         @show
 
     </body>
